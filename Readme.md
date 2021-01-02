@@ -26,6 +26,24 @@ newline separated text. length:17644
 プロファイリングをしてみると、parenthesisLevelメソッドが遅そう。
 ![プロファイリング結果](doc/cpu_time.png)
 
+# 再現コード2
+ParenthesisLevelTest.java
+parenthesisLevelだけにして同じくらいの時間がかかった。
+
+```
+space separated text. length:8822
+1026ms
+----------------------
+space separated text. length:17644
+2867ms
+----------------------
+newline separated text. length:8822
+88464ms
+----------------------
+newline separated text length:17644
+430036ms
+----------------------
+```
 
 # 再現コード3
 RegexTest.java
