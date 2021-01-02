@@ -6,3 +6,5 @@
 build
 .vscode
 app/bin/
+
+app/src/main/resources/system_core.dic

@@ -3,19 +3,38 @@
  */
 package com.ikasako.sudachi.perftest;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexTest {
     public static void main(String[] args) throws Exception {
-        long start = System.currentTimeMillis();
-        for (int i=0;i<10000;i++) {
-            new RegexTest().run("hoge");
-        }
-        System.out.println(System.currentTimeMillis() -start);
+        RegexTest instance = new RegexTest();
+
+        String plainText = Files.readString(Path.of("app/src/main/resources", "sentences.txt"));
+        System.out.println("plain text");
+        instance.execute(plainText, 100);
+
+        System.out.println("space separated text");
+        String spaceStr = StringUtil.replaceOddChar(plainText, ' ');
+        instance.execute(spaceStr, 100);
+
+        System.out.println("newline separated text");
+        String newLineStr = StringUtil.replaceOddChar(plainText, '\n');
+        instance.execute(newLineStr, 100);
     }
 
-    public void run(String str) {
+    public void execute(String str, int times) {
+        long start = System.currentTimeMillis();
+        for (int i=0; i<times; i++) {
+            run(str);
+        }
+        System.out.println(System.currentTimeMillis() -start);
+
+    }
+
+    private void run(String str) {
         int length;
         while ((length = getEnd(str)) != 0) {
             str = str.substring(length);
