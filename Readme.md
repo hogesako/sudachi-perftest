@@ -27,11 +27,39 @@ newline separated text. length:17644
 ![プロファイリング結果](doc/cpu_time.png)
 
 
-# 結論
-* 改行が多い文章の場合、文章の長さに応じて処理時間が増大する(たぶん指数関数的に増大している)
+# 再現コード3
+RegexTest.java
+下記SentenceDetectorのうち、SENTENCE_BREAKER_PATTERNにマッチする文字が存在しない場合の処理時間比較
+https://github.com/WorksApplications/Sudachi/blob/develop/src/main/java/com/worksap/nlp/sudachi/sentdetect/SentenceDetector.java#L122
+1文字ごとにスペース区切りの文章、1文字ごとに改行区切りの文章に対して正規表現による文分割を行っている
+通常の文章は改行がなく、句点での文分割が行われているので計測していない
+
+以下の通り、spaceとnewlineで処理時間に差がある。
+また、newlineの場合は文字列長に応じて処理時間が増大する
+```
+space separated text. length:8822
+39ms
+----------------------
+space separated text. length:17644
+25ms
+----------------------
+space separated text. length:88220
+19ms
+----------------------
+newline separated text. length:8822
+809ms
+----------------------
+newline separated text length:17644
+1838ms
+----------------------
+newline separated text length:88220
+41810ms
+----------------------
+```
+
 
 # 計測条件
-MacBook Pro (15-inch, 2017)
-2.8 GHz クアッドコアIntel Core i7
-16 GB 2133 MHz LPDDR3
-OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.6+10, mixed mode)
+* MacBook Pro (15-inch, 2017)
+* 2.8 GHz クアッドコアIntel Core i7
+* 16 GB 2133 MHz LPDDR3
+* OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.6+10, mixed mode)
