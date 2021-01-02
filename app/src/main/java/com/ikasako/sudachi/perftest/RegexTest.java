@@ -17,15 +17,23 @@ public class RegexTest {
         System.out.println("space separated text. length:" + spaceStr.length());
         instance.execute(spaceStr, 100);
 
-        spaceStr = StringUtil.amplification(spaceStr, 10);
-        System.out.println("space separated text length:" + spaceStr.length());
+        spaceStr = StringUtil.amplification(spaceStr, 2);
+        System.out.println("space separated text. length:" + spaceStr.length());
+        instance.execute(spaceStr, 100);
+
+        spaceStr = StringUtil.amplification(spaceStr, 5);
+        System.out.println("space separated text. length:" + spaceStr.length());
         instance.execute(spaceStr, 100);
 
         String newLineStr = StringUtil.replaceOddChar(plainText, '\n');
+        System.out.println("newline separated text. length:" + newLineStr.length());
+        instance.execute(newLineStr, 100);
+
+        newLineStr = StringUtil.amplification(newLineStr, 2);
         System.out.println("newline separated text length:" + newLineStr.length());
         instance.execute(newLineStr, 100);
 
-        newLineStr = StringUtil.amplification(newLineStr, 10);
+        newLineStr = StringUtil.amplification(newLineStr, 5);
         System.out.println("newline separated text length:" + newLineStr.length());
         instance.execute(newLineStr, 100);
         
