@@ -18,12 +18,20 @@ public class SudachiPerfTest {
         System.out.println("plain text");
         instance.tokenizeSentences(plainText, 100);
 
-        System.out.println("space separated text");
         String spaceStr = StringUtil.replaceOddChar(plainText, ' ');
+        System.out.println("space separated text. length:" + spaceStr.length());
         instance.tokenizeSentences(spaceStr, 100);
 
-        System.out.println("newline separated text");
+        spaceStr = StringUtil.amplification(spaceStr, 10);
+        System.out.println("space separated text length:" + spaceStr.length());
+        instance.tokenizeSentences(spaceStr, 100);
+
         String newLineStr = StringUtil.replaceOddChar(plainText, '\n');
+        System.out.println("newline separated text length:" + newLineStr.length());
+        instance.tokenizeSentences(newLineStr, 100);
+
+        newLineStr = StringUtil.amplification(newLineStr, 10);
+        System.out.println("newline separated text length:" + newLineStr.length());
         instance.tokenizeSentences(newLineStr, 100);
         
         instance.close();

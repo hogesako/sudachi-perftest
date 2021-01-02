@@ -13,16 +13,22 @@ public class RegexTest {
         RegexTest instance = new RegexTest();
 
         String plainText = Files.readString(Path.of("app/src/main/resources", "sentences.txt"));
-        System.out.println("plain text");
-        instance.execute(plainText, 100);
-
-        System.out.println("space separated text");
         String spaceStr = StringUtil.replaceOddChar(plainText, ' ');
+        System.out.println("space separated text. length:" + spaceStr.length());
         instance.execute(spaceStr, 100);
 
-        System.out.println("newline separated text");
+        spaceStr = StringUtil.amplification(spaceStr, 10);
+        System.out.println("space separated text length:" + spaceStr.length());
+        instance.execute(spaceStr, 100);
+
         String newLineStr = StringUtil.replaceOddChar(plainText, '\n');
+        System.out.println("newline separated text length:" + newLineStr.length());
         instance.execute(newLineStr, 100);
+
+        newLineStr = StringUtil.amplification(newLineStr, 10);
+        System.out.println("newline separated text length:" + newLineStr.length());
+        instance.execute(newLineStr, 100);
+        
     }
 
     public void execute(String str, int times) {
@@ -30,7 +36,8 @@ public class RegexTest {
         for (int i=0; i<times; i++) {
             run(str);
         }
-        System.out.println(System.currentTimeMillis() -start);
+        System.out.println(System.currentTimeMillis() - start + "ms");
+        System.out.println("----------------------");
 
     }
 

@@ -15,4 +15,12 @@ public class StringUtil {
         }
         return result.toString();
     }
+
+    public static String amplification(String str, int times) {
+        StringBuilder result = new StringBuilder();
+        for (int i=0; i<times; i++) {
+            result.append(str);
+        }
+        return result.toString();
+    }
 }
