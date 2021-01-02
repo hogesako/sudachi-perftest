@@ -79,7 +79,7 @@ public class ParenthesisLevelTest {
         if (m.find()) {
             return m.end();
         }
-        return 1;
+        return 0;
     }
 
     int parenthesisLevel(CharSequence s) {
